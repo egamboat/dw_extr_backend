@@ -1,14 +1,6 @@
 import os
 from django.db import models
 from django.conf import settings
-from django.contrib.auth.models import AbstractUser
-
-# Usuarios (extendiendo el modelo base de Django)
-class CustomUser(AbstractUser):
-    groups = models.ManyToManyField('auth.Group',related_name='customuser_set', blank=True
-    )
-    user_permissions = models.ManyToManyField('auth.Permission',related_name='customuser_permissions_set',blank=True
-    )
 
 # Modelo para Archivos CSV
 def user_directory_path(instance, filename):
