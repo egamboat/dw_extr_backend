@@ -1,6 +1,10 @@
-from django.urls import path
-from . import views
+from rest_framework.routers import DefaultRouter
+from django.urls import path, include
+from .views import CSVFileViewSet
+
+router = DefaultRouter()
+router.register(r'csv_files', CSVFileViewSet, basename='csvfile')
 
 urlpatterns = [
-    path('csv_files/', views.csv_file_list, name='csv_file_list'),
+    path('', include(router.urls)),
 ]
