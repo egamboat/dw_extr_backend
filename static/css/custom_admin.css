@@ -1,0 +1,9 @@
+.brand-logo img {
+    max-width: 200px; /* Ajusta este valor según lo necesario */
+    height: auto;
+}
+
+.login-logo img {
+    max-width: 200px; /* Ajusta este valor también */
+    height: auto;
+}

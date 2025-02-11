@@ -32,6 +32,7 @@ ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
 
 INSTALLED_APPS = [
     'users',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -160,3 +161,35 @@ EMAIL_HOST_PASSWORD =os.getenv("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 FRONT_URL = os.getenv('FRONT_ENV_URL')
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Data Glifo Admin",
+    "site_header": "Data Glifo",
+    "site_brand": "Data Glifo",
+    # "site_logo": "img/mic_white.png",
+    # "login_logo": "img/logo_negro.png",
+    # "login_logo_dark": "img/logo_negro.png",
+    # "site_logo_classes": "img-circle",
+    "welcome_sign": "Bienvenido al Data Glifo Admin",
+    "copyright": "Data Glifo",
+    "custom_css": "css/custom_admin.css",
+    "icons": {
+        # Íconos para los modelos de tu app "asistente"
+        "asistente.agenda": "fas fa-calendar-alt",   # Ícono de calendario
+        "asistente.evento": "fas fa-calendar-check", # Ícono de evento
+        "asistente.modalidad": "fas fa-cogs",        # Ícono de configuración
+        "asistente.tipoevento": "fas fa-tags",       # Ícono de etiquetas
+        # Íconos para modelos de autenticación
+        "auth.user": "fas fa-user",                  # Ícono de usuario
+        "auth.group": "fas fa-users",                # Ícono de grupo
+    },
+}
+JAZZMIN_UI_TWEAKS = {
+    "theme": "flatly",
+}
+
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
