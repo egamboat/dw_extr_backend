@@ -26,7 +26,9 @@ def benchmark_directory_path(instance, filename):
 
 
 class BenchmarkReport(models.Model):
-    """Modelo que almacena los informes de benchmarks en formato CSV."""
+    name = models.CharField(max_length=100, null=True, blank=True, verbose_name="Nombre del archivo")
+    description = models.TextField(null=True, blank=True, verbose_name="Descripción del archivo")
+
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     benchmark_file = models.FileField(upload_to=benchmark_directory_path)
     generated_at = models.DateTimeField(auto_now_add=True)

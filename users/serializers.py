@@ -64,3 +64,13 @@ class PasswordResetSerializer(serializers.Serializer):
         user.reset_token = None
         user.reset_token_expires_at = None
         user.save()
+
+class UserViewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'username', 'email', 'first_name', 'last_name']
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['email', 'first_name', 'last_name']
