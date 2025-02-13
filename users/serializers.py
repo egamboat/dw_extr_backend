@@ -7,11 +7,24 @@ from users.models import CustomUser
 
 User = get_user_model()
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'password')
-        extra_kwargs = {'password': {'write_only': True}}
+        extra_kwargs = {
+            'password': {'write_only': True},
+        }
+
+    def validate_username(self, value):
+        if User.objects.filter(username=value).exists():
+            raise serializers.ValidationError("Este nombre de usuario ya está en uso.")
+        return value
+
+    def validate_email(self, value):
+        if User.objects.filter(email=value).exists():
+            raise serializers.ValidationError("Este correo electrónico ya está registrado.")
+        return value
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
@@ -22,10 +35,10 @@ class PasswordResetRequestSerializer(serializers.Serializer):
     email = serializers.EmailField()
 
     def validate_email(self, value):
-
         if not User.objects.filter(email=value).exists():
             raise serializers.ValidationError("No se encontró una cuenta con este email.")
         return value
+
 
 class PasswordResetSerializer(serializers.Serializer):
     token = serializers.CharField()
